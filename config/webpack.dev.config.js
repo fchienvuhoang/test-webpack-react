@@ -1,6 +1,7 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'); //to access built-in plugins
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 var APP_DIR = path.resolve(__dirname, '../src/app');
 
@@ -27,6 +28,7 @@ module.exports = {
       ]
     },
     plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
         new CleanWebpackPlugin(['./dist'],{ root: path.resolve(__dirname , '..')}),
         new HtmlWebpackPlugin({template: './config/index.html', title: 'Webpack default title'})
     ]
